@@ -1,4 +1,4 @@
-# World Clock + Conference Deadlines
+# World Clock + AI Deadlines
 
 Terminal tools for:
 - world time timeline (`worldclock.sh`)
@@ -33,6 +33,54 @@ brew install coreutils
 ```
 
 This provides `gdate`, which the script uses automatically when available.
+
+## Install On Your Machine
+
+1. Clone the repo and enter it:
+
+```bash
+git clone <YOUR_REPO_URL> world-clock
+cd world-clock
+```
+
+2. Make scripts executable:
+
+```bash
+chmod +x worldclock.sh worldclock_v2.sh worldclock_mgs.sh ai_deadlines.sh deadline
+```
+
+3. Install user-level commands (`deadline`, optional `worldclock`):
+
+```bash
+mkdir -p ~/.local/bin
+ln -sf "$PWD/deadline" ~/.local/bin/deadline
+ln -sf "$PWD/worldclock_v2.sh" ~/.local/bin/worldclock
+```
+
+4. Ensure `~/.local/bin` is in `PATH`:
+
+Linux (`bash`):
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+hash -r
+```
+
+macOS (`zsh` default):
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+hash -r
+```
+
+5. Verify install:
+
+```bash
+deadline help
+INTERVAL=0 worldclock
+```
 
 ## 1) World Clock
 
