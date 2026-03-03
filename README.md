@@ -1,4 +1,4 @@
-# World Clock + AI Deadlines
+# World Clock + Conference Deadlines
 
 Terminal tools for:
 - world time timeline (`worldclock.sh`)
