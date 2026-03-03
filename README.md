@@ -1,15 +1,34 @@
-# World Clock + Conference Deadlines
+# World Clock + AI Deadlines
 
 Terminal tools for:
 - world time timeline (`worldclock.sh`)
 - AI conference deadline tracker (`deadline` command)
 
+## Platform Support
+
+Fully supported:
+- Linux
+- macOS
+
 ## Requirements
 
 - Bash
-- `date` (GNU date with timezone support)
 - `tput`
-- `curl` (only for `deadline add-auto`)
+- `curl` (for `deadline add-auto`)
+- `date` with timezone support
+
+Linux:
+- Usually preinstalled.
+
+macOS:
+- Built-in `date` is supported.
+- Recommended for best date parsing compatibility:
+
+```bash
+brew install coreutils
+```
+
+This provides `gdate`, which the script uses automatically when available.
 
 ## 1) World Clock
 
@@ -25,6 +44,19 @@ One-shot:
 INTERVAL=0 bash worldclock.sh
 ```
 
+Screenshot:
+
+```text
+World Time  •  2026-03-03 15:51:50
++--------------------------------------------------+
+| tallinn    -------------*-------  15:51  +00:00 |
+| barcelona  ------------*|-------  14:51  -01:00 |
+| tokyo      -------------|------*  22:51  +07:00 |
+| houston    -----*-------|-------  07:51  -08:00 |
+| utc        -----------*-|-------  13:51  -02:00 |
++--------------------------------------------------+
+```
+
 ## 2) Install `deadline` Command (once)
 
 From project directory:
@@ -35,11 +67,27 @@ mkdir -p ~/.local/bin
 ln -sf "$PWD/deadline" ~/.local/bin/deadline
 ```
 
-If needed, ensure PATH includes `~/.local/bin`:
+Linux (bash):
 
 ```bash
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
+hash -r
+```
+
+macOS (zsh default):
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+hash -r
+```
+
+macOS (if using bash):
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bash_profile
+source ~/.bash_profile
 hash -r
 ```
 
@@ -82,6 +130,19 @@ Show website column:
 
 ```bash
 SHOW_WEBSITE=1 deadline run
+```
+
+Screenshot:
+
+```text
+AI Deadlines ●  •  Your Time: 2026-03-03 15:51:50 EET
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ Conference   │ Stage    │ Deadline (Your Time)   │ Status   │ Countdown              │
+│ NeurIPS 2026 │ Abstract │ 2026-05-10 23:00 EEST  │ OPEN     │ T-68d 06h 08m 10s      │
+│ ICML 2026    │ Abstract │ 2026-01-30 01:59 EET   │ CLOSED   │ +32d 13h 52m 50s       │
+│ SRW 2026     │ Abstract │ 2026-02-04 02:00 EET   │ CLOSED   │ +27d 13h 51m 50s       │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+Ctrl+C to quit • deadline add/add-auto/list/remove • INTERVAL=0 for one-shot
 ```
 
 ## Advanced Commands
