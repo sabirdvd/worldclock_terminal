@@ -1,0 +1,9 @@
+# name|abstract_deadline|final_deadline|timezone|website
+# Format: Conference Name|YYYY-MM-DD HH:MM|YYYY-MM-DD HH:MM|IANA_Timezone|https://conference.site
+# Example:
+# NeurIPS 2026|2026-05-10 13:00|2026-05-17 13:00|America/Los_Angeles|https://neurips.cc
+
+NeurIPS 2026|2026-05-10 13:00|2026-05-17 13:00|America/Los_Angeles|https://neurips.cc
+ICML 2026|2026-01-29 23:59|2026-02-15 23:59|UTC|https://icml.cc
+ACL 2026|2026-05-01 23:59|2026-05-15 23:59|UTC|https://2026.aclweb.org
+SRW 2026|2026-02-04 00:00|2026-02-20 00:00|UTC|https://2026.aclweb.org/calls/student_research_workshop/
