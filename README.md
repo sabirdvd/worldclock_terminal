@@ -1,4 +1,4 @@
-# World Clock + AI Deadlines
+# World Clock + Conference Deadlines
 
 Terminal tools for:
 - world time timeline (`worldclock.sh`)
@@ -109,6 +109,7 @@ Interactive commands:
 
 ```bash
 deadline add
+deadline add-row
 deadline add-auto
 deadline remove
 deadline list
@@ -118,12 +119,6 @@ One-shot:
 
 ```bash
 INTERVAL=0 deadline run
-```
-
-Show all stages (default view is `Abstract` only):
-
-```bash
-STAGE_FILTER=all deadline run
 ```
 
 Show website column:
@@ -136,13 +131,13 @@ Screenshot:
 
 ```text
 AI Deadlines ●  •  Your Time: 2026-03-03 15:51:50 EET
-┌──────────────────────────────────────────────────────────────────────────────────────┐
-│ Conference   │ Stage    │ Deadline (Your Time)   │ Status   │ Countdown              │
-│ NeurIPS 2026 │ Abstract │ 2026-05-10 23:00 EEST  │ OPEN     │ T-68d 06h 08m 10s      │
-│ ICML 2026    │ Abstract │ 2026-01-30 01:59 EET   │ CLOSED   │ +32d 13h 52m 50s       │
-│ SRW 2026     │ Abstract │ 2026-02-04 02:00 EET   │ CLOSED   │ +27d 13h 51m 50s       │
-└──────────────────────────────────────────────────────────────────────────────────────┘
-Ctrl+C to quit • deadline add/add-auto/list/remove • INTERVAL=0 for one-shot
+┌────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ Conference   │ Abstract (Your Time)  │ Deadline (Your Time)  │ Status     │ Countdown            │
+│ NeurIPS 2026 │ 2026-05-10 23:00 EEST │ 2026-05-17 23:00 EEST │ OPEN/A     │ T-68d 06h 00m 41s    │
+│ ICML 2026    │ 2026-01-30 01:59 EET  │ 2026-02-16 01:59 EET  │ CLOSED ●   │ +15d 14h 00m 19s     │
+│ ACL 2026     │ 2026-05-02 02:59 EEST │ 2026-05-16 02:59 EEST │ OPEN/A     │ T-59d 09h 59m 41s    │
+└────────────────────────────────────────────────────────────────────────────────────────────────────┘
+Ctrl+C to quit • deadline add-row/add/add-auto/list/remove • INTERVAL=0 for one-shot
 ```
 
 ## Advanced Commands
@@ -151,6 +146,12 @@ Manual add:
 
 ```bash
 deadline add -n "NeurIPS 2026" -s "Abstract" -d "2026-05-10 13:00" -z "America/Los_Angeles" -w "https://neurips.cc"
+```
+
+One-row add (recommended):
+
+```bash
+deadline add-row -n "NeurIPS 2026" -a "2026-05-10 13:00" -d "2026-05-17 13:00" -z "America/Los_Angeles" -w "https://neurips.cc"
 ```
 
 Auto-fetch from website (best effort):
@@ -166,16 +167,15 @@ deadline remove --id 3
 deadline remove -n "NeurIPS 2026" -s "Abstract"
 ```
 
-## `deadlines.txt` format
+## `deadlines.txt` format (one row per conference)
 
 ```text
-Conference Name|Stage|YYYY-MM-DD HH:MM|IANA_Timezone|Website
+Conference Name|Abstract Date|Deadline Date|IANA_Timezone|Website
 ```
 
 Example:
 
 ```text
-NeurIPS 2026|Abstract|2026-05-10 13:00|America/Los_Angeles|https://neurips.cc
-NeurIPS 2026|Rebuttal|2026-05-17 13:00|America/Los_Angeles|https://neurips.cc
-NeurIPS 2026|Decision|2026-07-10 09:00|America/Los_Angeles|https://neurips.cc
+NeurIPS 2026|2026-05-10 13:00|2026-05-17 13:00|America/Los_Angeles|https://neurips.cc
+ICML 2026|2026-01-29 23:59|2026-02-15 23:59|UTC|https://icml.cc
 ```
