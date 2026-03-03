@@ -1,7 +1,7 @@
 # World Clock + AI Deadlines
 
 Terminal tools for:
-- world time timeline (`worldclock.sh`)
+- world time timeline (`worldclock`)
 - AI conference deadline tracker (`deadline` command)
 
 ## Preview
@@ -49,7 +49,7 @@ cd world-clock
 chmod +x worldclock.sh worldclock_v2.sh worldclock_mgs.sh ai_deadlines.sh deadline
 ```
 
-3. Install user-level commands (`deadline`, optional `worldclock`):
+3. Install user-level commands (`deadline` and `worldclock`):
 
 ```bash
 mkdir -p ~/.local/bin
@@ -75,6 +75,14 @@ source ~/.zshrc
 hash -r
 ```
 
+macOS (`bash`):
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bash_profile
+source ~/.bash_profile
+hash -r
+```
+
 5. Verify install:
 
 ```bash
@@ -82,18 +90,18 @@ deadline help
 INTERVAL=0 worldclock
 ```
 
-## 1) World Clock
+## Run World Clock
 
 Run:
 
 ```bash
-bash worldclock.sh
+worldclock
 ```
 
 One-shot:
 
 ```bash
-INTERVAL=0 bash worldclock.sh
+INTERVAL=0 worldclock
 ```
 
 Screenshot:
@@ -109,47 +117,7 @@ World Time  •  2026-03-03 15:51:50
 +-------------------------------------------------+
 ```
 
-## 2) Install `deadline` Command (once)
-
-From project directory:
-
-```bash
-chmod +x deadline ai_deadlines.sh
-mkdir -p ~/.local/bin
-ln -sf "$PWD/deadline" ~/.local/bin/deadline
-```
-
-Linux (bash):
-
-```bash
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
-hash -r
-```
-
-macOS (zsh default):
-
-```bash
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
-source ~/.zshrc
-hash -r
-```
-
-macOS (if using bash):
-
-```bash
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bash_profile
-source ~/.bash_profile
-hash -r
-```
-
-Verify:
-
-```bash
-deadline help
-```
-
-## 3) Use `deadline`
+## Run AI Deadlines
 
 Run tracker:
 
