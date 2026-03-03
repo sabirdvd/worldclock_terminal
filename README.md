@@ -1,7 +1,7 @@
 # World Clock + AI Deadlines
 
 Terminal tools for:
-- world time timeline (`worldclock`)
+- world time timeline (`worldclock.sh`)
 - AI conference deadline tracker (`deadline` command)
 
 ## Preview
@@ -49,12 +49,11 @@ cd world-clock
 chmod +x worldclock.sh worldclock_v2.sh worldclock_mgs.sh ai_deadlines.sh deadline
 ```
 
-3. Install user-level commands (`deadline` and `worldclock`):
+3. Install user-level command (`deadline`):
 
 ```bash
 mkdir -p ~/.local/bin
 ln -sf "$PWD/deadline" ~/.local/bin/deadline
-ln -sf "$PWD/worldclock_v2.sh" ~/.local/bin/worldclock
 ```
 
 4. Ensure `~/.local/bin` is in `PATH`:
@@ -87,6 +86,12 @@ hash -r
 
 ```bash
 deadline help
+```
+
+Optional: add a `worldclock` command alias for `worldclock_v2.sh`:
+
+```bash
+ln -sf "$PWD/worldclock_v2.sh" ~/.local/bin/worldclock
 INTERVAL=0 worldclock
 ```
 
@@ -95,13 +100,13 @@ INTERVAL=0 worldclock
 Run:
 
 ```bash
-worldclock
+bash worldclock.sh
 ```
 
 One-shot:
 
 ```bash
-INTERVAL=0 worldclock
+INTERVAL=0 bash worldclock.sh
 ```
 
 Screenshot:
