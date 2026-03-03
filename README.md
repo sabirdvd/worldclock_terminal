@@ -57,3 +57,55 @@ Defaults:
 
 
 
+## Part 2: Standalone AI Deadline Tracker (Your Current Time)
+
+
+```text
+AI Deadlines (Standalone)  •  Your Time: 2026-03-03 12:17:42 EET
+┌──────────────────────────────────────────────────────────────────────────────────────────┐
+│ Conference               │ Deadline (Your Time)    │ Status   │ Countdown                │
+│ NeurIPS 2026 Abstract    │ 2026-05-10 23:00 EEST   │ OPEN     │ T-68d 09h 42m 18s        │
+│ NeurIPS 2026 Full Paper  │ 2026-05-17 23:00 EEST   │ OPEN     │ T-75d 09h 42m 18s        │
+│ ICML 2026 Paper          │ 2026-01-30 01:59 EET    │ CLOSED   │ +32d 10h 18m 42s         │
+│ ACL 2026 Main Conference │ 2026-05-16 02:59 EEST   │ OPEN     │ T-73d 13h 41m 18s        │
+└──────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+Run only the deadline tracker:
+
+```bash
+bash ai_deadlines.sh
+```
+
+One-shot:
+
+```bash
+INTERVAL=0 bash ai_deadlines.sh
+```
+
+Add a conference from terminal:
+
+```bash
+bash ai_deadlines.sh --add "CVPR 2027 Paper" "2026-11-15 23:59" "America/Los_Angeles"
+```
+
+List conferences from terminal:
+
+```bash
+bash ai_deadlines.sh --list
+```
+
+File format in `deadlines.txt`:
+
+```text
+Conference Name|YYYY-MM-DD HH:MM|IANA_Timezone
+```
+
+Example:
+
+```text
+NeurIPS 2026 Abstract|2026-05-10 13:00|America/Los_Angeles
+ICLR 2027 Paper|2026-09-29 17:00|UTC
+```
+
+This standalone view converts every conference deadline into your local timezone and shows live countdown with blink/pulse alerts for `SOON` and `CLOSED`.
