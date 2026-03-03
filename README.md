@@ -1,8 +1,12 @@
-# World Clock + Conference Deadlines
+# World Clock + AI Deadlines
 
 Terminal tools for:
 - world time timeline (`worldclock.sh`)
 - AI conference deadline tracker (`deadline` command)
+
+## Preview
+
+![World Clock + AI Deadlines preview](./image.png)
 
 ## Platform Support
 
@@ -48,13 +52,13 @@ Screenshot:
 
 ```text
 World Time  •  2026-03-03 15:51:50
-+--------------------------------------------------+
++-------------------------------------------------+
 | tallinn    -------------*-------  15:51  +00:00 |
 | barcelona  ------------*|-------  14:51  -01:00 |
 | tokyo      -------------|------*  22:51  +07:00 |
 | houston    -----*-------|-------  07:51  -08:00 |
 | utc        -----------*-|-------  13:51  -02:00 |
-+--------------------------------------------------+
++-------------------------------------------------+
 ```
 
 ## 2) Install `deadline` Command (once)
@@ -130,13 +134,14 @@ SHOW_WEBSITE=1 deadline run
 Screenshot:
 
 ```text
-AI Deadlines ●  •  Your Time: 2026-03-03 15:51:50 EET
-┌────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│ Conference   │ Abstract (Your Time)  │ Deadline (Your Time)  │ Status     │ Countdown            │
-│ NeurIPS 2026 │ 2026-05-10 23:00 EEST │ 2026-05-17 23:00 EEST │ OPEN/A     │ T-68d 06h 00m 41s    │
-│ ICML 2026    │ 2026-01-30 01:59 EET  │ 2026-02-16 01:59 EET  │ CLOSED ●   │ +15d 14h 00m 19s     │
-│ ACL 2026     │ 2026-05-02 02:59 EEST │ 2026-05-16 02:59 EEST │ OPEN/A     │ T-59d 09h 59m 41s    │
-└────────────────────────────────────────────────────────────────────────────────────────────────────┘
+AI Deadlines ●  •  Your Time: 2026-03-03 20:21:14 EET
++--------------------------------------------------------------------------------------------------+
+| Conference   | Abstract (Your Time)  | Deadline (Your Time)  | Status     | Countdown            |
+| NeurIPS 2026 | 2026-05-10 23:00 EEST | 2026-05-17 23:00 EEST | OPEN/A     | T-68d 01h 38m 46s    |
+| ICML 2026    | 2026-01-30 01:59 EET  | 2026-02-16 01:59 EET  | CLOSED *   | +15d 18h 22m 14s     |
+| ACL 2026     | 2026-05-02 02:59 EEST | 2026-05-16 02:59 EEST | OPEN/A     | T-59d 05h 37m 46s    |
+| SRW 2026     | 2026-02-04 02:00 EET  | 2026-02-20 02:00 EET  | CLOSED *   | +11d 18h 21m 14s     |
++--------------------------------------------------------------------------------------------------+
 Ctrl+C to quit • deadline add-row/add/add-auto/list/remove • INTERVAL=0 for one-shot
 ```
 
