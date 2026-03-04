@@ -10,7 +10,6 @@ Terminal tools for:
 
 ## Platform Support
 
-Fully supported:
 - Linux
 - macOS
 
@@ -18,25 +17,20 @@ Fully supported:
 
 - Bash
 - `tput`
-- `curl` (for `deadline add-auto`)
 - `date` with timezone support
+- `curl` (only needed for `deadline add-auto`)
 
-Linux:
-- Usually preinstalled.
-
-macOS:
-- Built-in `date` is supported.
-- Recommended for best date parsing compatibility:
+macOS note:
 
 ```bash
 brew install coreutils
 ```
 
-This provides `gdate`, which the script uses automatically when available.
+If installed, `gdate` is used automatically for better date parsing.
 
 ## Install On Your Machine
 
-1. Clone the repo and enter it:
+1. Clone the repo:
 
 ```bash
 git clone <YOUR_REPO_URL> world-clock
@@ -49,14 +43,14 @@ cd world-clock
 chmod +x worldclock.sh worldclock_v2.sh worldclock_mgs.sh ai_deadlines.sh deadline
 ```
 
-3. Install user-level command (`deadline`):
+3. Install the `deadline` command:
 
 ```bash
 mkdir -p ~/.local/bin
 ln -sf "$PWD/deadline" ~/.local/bin/deadline
 ```
 
-4. Ensure `~/.local/bin` is in `PATH`:
+4. Add `~/.local/bin` to PATH.
 
 Linux (`bash`):
 
@@ -66,7 +60,7 @@ source ~/.bashrc
 hash -r
 ```
 
-macOS (`zsh` default):
+macOS (`zsh`):
 
 ```bash
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
@@ -82,22 +76,15 @@ source ~/.bash_profile
 hash -r
 ```
 
-5. Verify install:
+5. Verify:
 
 ```bash
 deadline help
 ```
 
-Optional: add a `worldclock` command alias for `worldclock_v2.sh`:
-
-```bash
-ln -sf "$PWD/worldclock_v2.sh" ~/.local/bin/worldclock
-INTERVAL=0 worldclock
-```
-
 ## Run World Clock
 
-Run:
+Default clock:
 
 ```bash
 bash worldclock.sh
@@ -109,17 +96,11 @@ One-shot:
 INTERVAL=0 bash worldclock.sh
 ```
 
-Screenshot:
+Optional extra (v2 alias):
 
-```text
-World Time  •  2026-03-03 15:51:50
-+-------------------------------------------------+
-| tallinn    -------------*-------  15:51  +00:00 |
-| barcelona  ------------*|-------  14:51  -01:00 |
-| tokyo      -------------|------*  22:51  +07:00 |
-| houston    -----*-------|-------  07:51  -08:00 |
-| utc        -----------*-|-------  13:51  -02:00 |
-+-------------------------------------------------+
+```bash
+ln -sf "$PWD/worldclock_v2.sh" ~/.local/bin/worldclock
+INTERVAL=0 worldclock
 ```
 
 ## Run AI Deadlines
@@ -128,16 +109,6 @@ Run tracker:
 
 ```bash
 deadline
-```
-
-Interactive commands:
-
-```bash
-deadline add
-deadline add-row
-deadline add-auto
-deadline remove
-deadline list
 ```
 
 One-shot:
@@ -152,48 +123,47 @@ Show website column:
 SHOW_WEBSITE=1 deadline run
 ```
 
-Screenshot:
+## Deadlines File Location
+
+Default location:
 
 ```text
-AI Deadlines ●  •  Your Time: 2026-03-03 20:21:14 EET
-+--------------------------------------------------------------------------------------------------+
-| Conference   | Abstract (Your Time)  | Deadline (Your Time)  | Status     | Countdown            |
-| NeurIPS 2026 | 2026-05-10 23:00 EEST | 2026-05-17 23:00 EEST | OPEN/A     | T-68d 01h 38m 46s    |
-| ICML 2026    | 2026-01-30 01:59 EET  | 2026-02-16 01:59 EET  | CLOSED *   | +15d 18h 22m 14s     |
-| ACL 2026     | 2026-05-02 02:59 EEST | 2026-05-16 02:59 EEST | OPEN/A     | T-59d 05h 37m 46s    |
-| SRW 2026     | 2026-02-04 02:00 EET  | 2026-02-20 02:00 EET  | CLOSED *   | +11d 18h 21m 14s     |
-+--------------------------------------------------------------------------------------------------+
-Ctrl+C to quit • deadline add-row/add/add-auto/list/remove • INTERVAL=0 for one-shot
+~/.local/share/world-clock/deadlines.txt
 ```
 
-## Advanced Commands
+- Works from any directory.
+- File is auto-created on first run.
+- If repo `deadlines.txt` exists, it is copied as starter data on first run.
 
-Manual add:
+Override location:
+
+```bash
+DEADLINES_FILE=/path/to/deadlines.txt deadline
+```
+
+## Deadline Commands
+
+Interactive:
+
+```bash
+deadline add
+deadline add-row
+deadline add-auto
+deadline remove
+deadline list
+```
+
+Advanced examples:
 
 ```bash
 deadline add -n "NeurIPS 2026" -s "Abstract" -d "2026-05-10 13:00" -z "America/Los_Angeles" -w "https://neurips.cc"
-```
-
-One-row add (recommended):
-
-```bash
 deadline add-row -n "NeurIPS 2026" -a "2026-05-10 13:00" -d "2026-05-17 13:00" -z "America/Los_Angeles" -w "https://neurips.cc"
-```
-
-Auto-fetch from website (best effort):
-
-```bash
 deadline add-auto -n "ICLR 2027" -s "Abstract" -u "https://iclr.cc/Conferences/2027/CallForPapers" -z "UTC"
-```
-
-Remove:
-
-```bash
 deadline remove --id 3
 deadline remove -n "NeurIPS 2026" -s "Abstract"
 ```
 
-## `deadlines.txt` format (one row per conference)
+## `deadlines.txt` Format
 
 ```text
 Conference Name|Abstract Date|Deadline Date|IANA_Timezone|Website
