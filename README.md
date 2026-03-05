@@ -234,7 +234,3 @@ NeurIPS 2026,2026-05-10 13:00,2026-05-17 13:00,America/Los_Angeles,https://neuri
 ICML 2026,2026-01-29 23:59,2026-02-15 23:59,UTC,https://icml.cc
 ```
 
-## UI Behavior
-
-- Deadline statuses no longer blink.
-- Status uses color + bold only.
