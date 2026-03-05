@@ -6,7 +6,7 @@ Terminal tools for:
 
 ## Preview
 
-![World Clock + AI Deadlines preview](./.png)
+![World Clock + AI Deadlines preview](./screenshot.png)
 
 ## Platform Support
 
