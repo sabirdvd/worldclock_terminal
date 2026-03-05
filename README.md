@@ -6,7 +6,7 @@ Terminal tools for:
 
 ## Preview
 
-![World Clock + AI Deadlines preview](./screenshot.png)
+![World Clock + AI Deadlines preview](./.png)
 
 ## Platform Support
 
@@ -123,6 +123,44 @@ Show website column:
 SHOW_WEBSITE=1 deadline run
 ```
 
+## How To Use (Quick Start)
+
+1. Start tracker:
+
+```bash
+deadline
+```
+
+2. Add one conference (same abstract and final date):
+
+```bash
+deadline add-row -n "ARR submission deadline (long & short papers)" -a "2026-05-25 23:59" -d "2026-05-25 23:59" -z "UTC" -w "-"
+```
+
+Example with ACL SRW website:
+
+```bash
+deadline add-row -n "ACL 2026 SRW" -a "2026-02-04 00:00" -d "2026-02-20 00:00" -z "UTC" -w "https://acl2026-srw.github.io/"
+```
+
+3. Import many conferences from CSV:
+
+```bash
+deadline import ./deadlines.csv
+```
+
+4. Check all saved rows:
+
+```bash
+deadline list
+```
+
+5. Remove a row by id:
+
+```bash
+deadline remove --id 3
+```
+
 ## Deadlines File Location
 
 Default location:
@@ -148,6 +186,7 @@ Interactive:
 ```bash
 deadline add
 deadline add-row
+deadline import ./deadlines.csv
 deadline add-auto
 deadline remove
 deadline list
@@ -158,6 +197,7 @@ Advanced examples:
 ```bash
 deadline add -n "NeurIPS 2026" -s "Abstract" -d "2026-05-10 13:00" -z "America/Los_Angeles" -w "https://neurips.cc"
 deadline add-row -n "NeurIPS 2026" -a "2026-05-10 13:00" -d "2026-05-17 13:00" -z "America/Los_Angeles" -w "https://neurips.cc"
+deadline import ./deadlines.csv
 deadline add-auto -n "ICLR 2027" -s "Abstract" -u "https://iclr.cc/Conferences/2027/CallForPapers" -z "UTC"
 deadline remove --id 3
 deadline remove -n "NeurIPS 2026" -s "Abstract"
@@ -175,3 +215,26 @@ Example:
 NeurIPS 2026|2026-05-10 13:00|2026-05-17 13:00|America/Los_Angeles|https://neurips.cc
 ICML 2026|2026-01-29 23:59|2026-02-15 23:59|UTC|https://icml.cc
 ```
+
+## CSV Import Format
+
+`deadline import` expects comma-separated rows in this order:
+
+```text
+Conference Name,Abstract Date,Deadline Date,IANA_Timezone,Website
+```
+
+Header row is optional.
+
+Example:
+
+```text
+Conference Name,Abstract Date,Deadline Date,IANA_Timezone,Website
+NeurIPS 2026,2026-05-10 13:00,2026-05-17 13:00,America/Los_Angeles,https://neurips.cc
+ICML 2026,2026-01-29 23:59,2026-02-15 23:59,UTC,https://icml.cc
+```
+
+## UI Behavior
+
+- Deadline statuses no longer blink.
+- Status uses color + bold only.
